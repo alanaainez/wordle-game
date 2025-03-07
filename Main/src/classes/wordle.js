@@ -27,8 +27,31 @@ class Wordle {
             }
         }
         return result;
-}};
-
-
+}
+    letterRepeated(guess, index) {
+        let guessCharCount = 0
+        for (let i = 0; i < guess.length; i++) {
+            if (guess[i] === guess[index]) {
+                guessCharCount++;
+            }
+        }
+        let wordleCharCount = 0
+        for (let i = 0; i < this.word.length; i++) {
+            if(this.word[i] === guess[index]) {
+                wordleCharCount.push(i);
+            }
+        }
+        if (guessCharCount.length === 1) {
+            return false;
+        }
+        if (guessCharCount.length === wordleCharCount.length) {
+            return false;
+        }
+        if (index === guessCharCount[0]) {
+            return false;
+        }
+        return true;
+    };
+}
 
 nodule.exports = {Wordle, GREEN, YELLOW, BLACK};
