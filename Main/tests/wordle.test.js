@@ -1,4 +1,4 @@
-const {Wordle, GREEN, YELLOW, BLACK} = require('..classes/Wordle')
+const {Wordle, GREEN, YELLOW, BLACK} = require("../classes/Wordle")
 
 describe('Wordle', () => {
     it('if guess has different number of letters than wordle, return empty array', () => {
@@ -13,7 +13,7 @@ describe('Wordle', () => {
     })
     it('if first letter is in correct position, return green for that position', () => {
         const wordle = new Wordle('cheek')
-        const result = wordle.checkWord('claps')
+        const result = wordle.checkWord('crash')
         expect(result)toEqual([GREEN, BLACK, BLACK, BLACK, BLACK])
     })
     it('if last letter is in correct position, return green for that position', () => {
@@ -31,9 +31,12 @@ describe('Wordle', () => {
         const result = wordle.checkWord('alert')
         expect(result)toEqual([BLACK, BLACK, BLACK, BLACK, BLACK])
     })
+})
+
+describe('repeatedLetter', () => {
     it('if letter exists multiple times in a guess but only one letter is in the correct position', () => {
         const wordle = new Wordle('cheek')
-        const result = wordle.checkWord('every')
-        expect(result)toEqual([BLACK, BLACK, YELLOW, BLACK, BLACK])
+        const result = wordle.repeatedLetter('every')
+        expect(result)toEqual([YELLOW, BLACK, GREEN, BLACK, BLACK])
     })
 })
