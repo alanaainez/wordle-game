@@ -1,0 +1,14 @@
+{
+  "name": "wordle-game",
+  "version": "1.0.0",
+  "description": "Utilizing testing knowledge to make a word guessing game",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
+}
