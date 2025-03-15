@@ -1,5 +1,6 @@
 const { Wordle, GREEN, YELLOW, BLACK } = require("./wordle.js");
 
+
 describe("Wordle", () => {
   it("if guess has a diffirent number of letters than wordle, it should retun empty array", () => {
     const wordle = new Wordle("alert");
@@ -58,7 +59,7 @@ describe("Wordle", () => {
       const result = wordle.letterRepeatedInGuess("abate", 2);
       expect(result).toEqual(true);
     });
-    it("guess word has repeated letters but only one exist in wordle", () => {
+    it("guess word has repeated letters but only one exists in wordle", () => {
         const wordle = new Wordle("alert");
         const result = wordle.letterRepeatedInGuess("abate", 0);
         expect(result).toEqual(false);

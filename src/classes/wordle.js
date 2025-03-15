@@ -1,11 +1,16 @@
+const fiveLetterWords = require("../words");
+
 const GREEN = "g";
 const YELLOW = "y";
 const BLACK = "b";
 
 class Wordle {
-  word;
-  constructor(word) {
-    this.word = word;
+  constructor(word = null) {
+    this.word = word || this.getRandomWord();
+  }
+
+  getRandomWord() {
+    return fiveLetterWords[Math.floor(Math.random() * fiveLetterWords.length)];
   }
 
   checkWord(guess) {
@@ -13,8 +18,9 @@ class Wordle {
       return [];
     }
     if (guess === this.word) {
-      return [GREEN, GREEN, GREEN, GREEN, GREEN];
+      return Array(this.word.length).fill(GREEN);
     }
+    
     let result = [];
 
     for (let i = 0; i < guess.length; i++) {
