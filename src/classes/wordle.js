@@ -1,4 +1,4 @@
-const fiveLetterWords = require("../words");
+const fiveLetterWords = require("../wordbank");
 
 const GREEN = "g";
 const YELLOW = "y";
