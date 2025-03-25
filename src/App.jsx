@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import WordleGame from "./components/wordle-game.js";
+import WordleGame from "./components/wordle-game";
 import Keyboard from "./components/Keyboard";
 import wordbank from "./utils/wordbank";
 import "./App.css";
@@ -16,11 +16,12 @@ function App() {
   const handleGuess = () => {
     if (currentGuess.length !== 5 || gameOver) return;
 
-    const newGuesses = [...guesses, currentGuess];
+    const newGuess = currentGuess.toLowerCase(); // Ensure lowercase consistency
+    const newGuesses = [...guesses, newGuess];
     setGuesses(newGuesses);
     setCurrentGuess("");
 
-    if (currentGuess === wordToGuess) {
+    if (newGuess === wordToGuess) {
       setWin(true);
       setGameOver(true);
     } else if (newGuesses.length >= 6) {
@@ -28,15 +29,15 @@ function App() {
     }
   };
 
-  const handleKeyPress = (key) => {
+  const handleInput = (key) => {
     if (gameOver) return;
 
     if (key === "Enter") {
       handleGuess();
     } else if (key === "Backspace") {
-      setCurrentGuess(currentGuess.slice(0, -1));
-    } else if (/^[a-zA-Z]$/.test(key) && currentGuess.length < 5) {
-      setCurrentGuess(currentGuess + key);
+      setCurrentGuess((prev) => prev.slice(0, -1));
+    } else if (/^[a-z]$/.test(key) && currentGuess.length < 5) {
+      setCurrentGuess((prev) => prev + key);
     }
   };
 
@@ -51,8 +52,9 @@ function App() {
   return (
     <div className="app">
       <h1>Wordle Game</h1>
-      <WordleGame wordToGuess={wordToGuess} guesses={guesses} />
-      <Keyboard onKeyPress={handleKeyPress} />
+      <WordleGame wordToGuess={wordToGuess} guesses={guesses} currentGuess={currentGuess} />
+      <Keyboard onInput={handleInput} onBackspace={() => handleInput("Backspace")} onSubmit={handleGuess} />
+      
       {gameOver && (
         <div className="game-over">
           <h2>{win ? "🎉 Congrats!" : `❌ Sorry! The word was: ${wordToGuess}`}</h2>
