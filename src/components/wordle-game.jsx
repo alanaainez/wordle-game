@@ -1,42 +1,92 @@
-import { useState } from "react";
-import { Wordle } from "../utils/wordle";
+import React, { useState, useEffect } from "react";
+import { Wordle, GREEN, YELLOW, BLACK } from "../utils/wordle";
 import fiveLetterWords from "../utils/wordbank";
+import Keyboard from "./Keyboard";
 
-export default function WordleGame() {
-  const [game] = useState(new Wordle());
+const WordleGame = () => {
+  const [game, setGame] = useState(new Wordle());
+  const [guesses, setGuesses] = useState([]);
   const [guess, setGuess] = useState("");
-  const [results, setResults] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
+  const maxGuesses = 6;
 
-  const handleGuess = () => {
-    if (guess.length !== 5 || !fiveLetterWords.includes(guess)) {
-      alert("Please enter a valid 5-letter word.");
-      return;
-    }
+  useEffect(() => {
+    setGame(new Wordle()); // Start a new game when component mounts
+  }, []);
 
-    const result = game.checkWord(guess);
-    setResults([...results, { guess, result }]);
-    setGuess("");
-
-    if (result.every((color) => color === "g")) {
-      alert("Congratulations! You guessed the word!");
+  const handleInput = (letter) => {
+    if (guess.length < 5 && !gameOver) {
+      setGuess(guess + letter);
     }
   };
 
+  const handleBackspace = () => {
+    if (!gameOver) {
+      setGuess(guess.slice(0, -1));
+    }
+  };
+
+  const handleSubmit = () => {
+    if (guess.length === 5 && !gameOver) {
+      if (!fiveLetterWords.includes(guess)) {
+        alert("Invalid word. Try again.");
+        return;
+      }
+
+      const result = game.checkWord(guess);
+      setGuesses([...guesses, { word: guess, result }]);
+      setGuess("");
+
+      if (result.every((color) => color === GREEN)) {
+        setGameOver(true);
+      } else if (guesses.length + 1 >= maxGuesses) {
+        setGameOver(true);
+      }
+    }
+  };
+
+  const handleNewGame = () => {
+    setGame(new Wordle());
+    setGuesses([]);
+    setGuess("");
+    setGameOver(false);
+  };
+
   return (
-    <div>
-      <h1>Wordle Game</h1>
-      <input
-        type="text"
-        value={guess}
-        onChange={(e) => setGuess(e.target.value)}
-        maxLength={5}
-      />
-      <button onClick={handleGuess}>Submit</button>
-      <div>
-        {results.map((entry, index) => (
-          <p key={index}>{entry.guess} - {entry.result.join(" ")}</p>
+    <div className="wordle-container">
+      <h1>Wordle Clone</h1>
+      <div className="wordle-grid">
+        {Array.from({ length: maxGuesses }).map((_, rowIndex) => (
+          <div key={rowIndex} className="wordle-row">
+            {Array.from({ length: 5 }).map((_, colIndex) => {
+              const char = guesses[rowIndex]?.word[colIndex] || "";
+              const color = guesses[rowIndex]?.result[colIndex] || "";
+              return (
+                <div key={colIndex} className={`wordle-cell ${color}`}>
+                  {char}
+                </div>
+              );
+            })}
+          </div>
         ))}
       </div>
+
+      {!gameOver && (
+        <>
+          <p>Current Guess: {guess}</p>
+          <Keyboard onInput={handleInput} onBackspace={handleBackspace} onSubmit={handleSubmit} />
+        </>
+      )}
+
+      {gameOver && (
+        <div>
+          <p>{guesses[guesses.length - 1].result.every((c) => c === GREEN) ? "🎉 You won!" : "❌ Game over!"}</p>
+          <p>The correct word was: <strong>{game.word}</strong></p>
+          <button onClick={handleNewGame}>Play Again</button>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default WordleGame;
