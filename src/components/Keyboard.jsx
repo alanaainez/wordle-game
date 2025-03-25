@@ -13,7 +13,7 @@ const Keyboard = ({ onKeyPress }) => {
       {keys.map((row, i) => (
         <div key={i} className="keyboard-row">
           {row.split("").map((key) => (
-            <button key={key} onClick={() => onKeyPress(key)}>{key}</button>
+            <button key={key} onClick={() => onInput(key)}>{key}</button>
           ))}
         </div>
       ))}
