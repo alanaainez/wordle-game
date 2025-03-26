@@ -1,6 +1,4 @@
-const { Wordle } = require("./utils/wordle");
 
-const fiveLetterWords = require("./src/wordbank");
 
 const game = new Wordle(); // Picks a random word from the list
 console.log("Try to guess the 5-letter word.");

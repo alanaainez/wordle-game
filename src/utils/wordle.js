@@ -1,4 +1,5 @@
-const fiveLetterWords = require("../wordbank");
+import fiveLetterWords from "./src/wordbank";
+
 
 const GREEN = "g";
 const YELLOW = "y";
@@ -6,7 +7,7 @@ const BLACK = "b";
 
 class Wordle {
   constructor(word = null) {
-    this.word = word || this.getRandomWord();
+    this.word = word || wordbank[Math.floor(Math.random() * wordbank.length)];
   }
 
   getRandomWord() {

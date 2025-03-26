@@ -173,4 +173,4 @@ const fiveLetterWords = [
     "wring", "wrist", "write", "writs", "wrong", "wrote", "wroth", "yacht", "yards", "yarns", "yawns", "yearn", "years", "yeast", "yells", "yelps", "yield", "yoked",
     "yokes", "yolks", "young", "yours", "youth", "zebra","zones", "coven"];
 
-module.exports = fiveLetterWords;
+export default fiveLetterWords;

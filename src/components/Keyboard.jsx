@@ -1,28 +1,26 @@
 import React from "react";
 import "./Keyboard.css";
 
-const Keyboard = ({ onKeyPress }) => {
+const Keyboard = ({ onInput, onBackspace, onSubmit, keyColors }) => {
   const keys = [
-    "qwertyuiop",
-    "asdfghjkl",
-    "zxcvbnm",
+    "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
+    "a", "s", "d", "f", "g", "h", "j", "k", "l",
+    "Enter", "z", "x", "c", "v", "b", "n", "m", "Backspace"
   ];
 
   return (
     <div className="keyboard">
       {keys.map((row, i) => (
-        <div key={i} className="keyboard-row">
-          {row.split("").map((key) => (
-            <button key={key} onClick={() => onInput(key)}>{key}</button>
-          ))}
-        </div>
-      ))}
-      <div className="keyboard-row">
-        <button className="wide-key" onClick={() => onKeyPress("Enter")}>Enter</button>
-        <button className="wide-key" onClick={() => onKeyPress("Backspace")}>⌫</button>
-      </div>
-    </div>
-  );
+        <button
+        key={keys}
+        className={`key ${keyColors[keys] || ""} ${["Enter", "Backspace"].includes(keys) ? "special" : ""}`}
+        onClick={() => keys === "Enter" ? onSubmit() : keys === "Backspace" ? onBackspace() : onInput(keys)}
+      >
+        {keys === "Backspace" ? "⌫" : keys}
+      </button>
+    ))}
+  </div>
+);
 };
 
 export default Keyboard;

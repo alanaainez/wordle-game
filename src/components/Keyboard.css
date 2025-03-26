@@ -1,0 +1,44 @@
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 10px;
+  }
+  
+  .key {
+    background-color: #d3d6da;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .key:hover {
+    background-color: #bcbfc4;
+  }
+  
+  .key.correct {
+    background-color: #6aaa64; /* Green */
+    color: white;
+  }
+  
+  .key.present {
+    background-color: #c9b458; /* Yellow */
+    color: white;
+  }
+  
+  .key.absent {
+    background-color: #787c7e; /* Gray */
+    color: white;
+  }
+  
+  .key.special {
+    grid-column: span 2;
+  }
+  
