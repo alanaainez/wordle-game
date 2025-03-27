@@ -54,7 +54,6 @@ function App() {
     <div className="app">
       <h1>Wordle Game</h1>
       <WordleGame wordToGuess={wordToGuess} guesses={guesses} currentGuess={currentGuess} />
-      <Keyboard onInput={handleInput} onBackspace={() => handleInput("Backspace")} onSubmit={handleGuess} />
       
       {gameOver && (
         <div className="game-over">

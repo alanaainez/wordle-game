@@ -171,6 +171,6 @@ const fiveLetterWords = [
     "wines", "wings", "winks", "wiped", "wipes", "wired", "wires", "wiser", "wisps", "witch", "witty", "wives", "woman", "women", "woods", "woody", "wooed", "wooer",
     "words", "wordy", "works", "world", "worms", "worry", "worse", "worst", "worth", "would", "wound", "wrack", "wraps", "wrapt", "wrath", "wreak", "wreck", "wrest",
     "wring", "wrist", "write", "writs", "wrong", "wrote", "wroth", "yacht", "yards", "yarns", "yawns", "yearn", "years", "yeast", "yells", "yelps", "yield", "yoked",
-    "yokes", "yolks", "young", "yours", "youth", "zebra","zones", "coven"];
+    "yokes", "yolks", "young", "yours", "youth", "zebra", "zones", "coven", "clone"];
 
 export default fiveLetterWords;

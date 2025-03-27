@@ -2,7 +2,7 @@ import React from "react";
 import "./Keyboard.css";
 
 const Keyboard = ({ onInput, onBackspace, onSubmit, keyColors }) => {
-  const keys = [
+  const rows = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
     ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
     ["Enter", "z", "x", "c", "v", "b", "n", "m", "Backspace"]
@@ -15,7 +15,7 @@ const Keyboard = ({ onInput, onBackspace, onSubmit, keyColors }) => {
   {row.map((key) => (
     <button
       key={key}
-      className={`key ${keyColors[key] || ""} ${["Enter", "Backspace"].includes(key) ? "special" : ""}`}
+      className={`key ${keyColors?.[key] || ""} ${["Enter", "Backspace"].includes(key) ? "special" : ""}`}
       onClick={() =>
         key === "Enter" ? onSubmit() :
         key === "Backspace" ? onBackspace() :

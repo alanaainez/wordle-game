@@ -62,7 +62,6 @@ const WordleGame = () => {
 
   return (
     <div className="wordle-container">
-      <h1>Wordle Clone</h1>
       <div className="wordle-grid">
         {Array.from({ length: MAX_GUESSES }).map((_, rowIndex) => (
           <div key={rowIndex} className="wordle-row">
