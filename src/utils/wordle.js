@@ -1,13 +1,14 @@
-import fiveLetterWords from "./src/wordbank";
+import fiveLetterWords from "./wordbank";
 
 
-const GREEN = "g";
-const YELLOW = "y";
-const BLACK = "b";
+export const GREEN = "g";
+export const YELLOW = "y";
+export const BLACK = "b";
 
-class Wordle {
+export class Wordle {
   constructor(word = null) {
-    this.word = word || wordbank[Math.floor(Math.random() * wordbank.length)];
+    this.word = word || 
+    fiveLetterWords[Math.floor(Math.random() * fiveLetterWords.length)];
   }
 
   getRandomWord() {
@@ -65,5 +66,3 @@ class Wordle {
     return true;
   }
 }
-
-module.exports = { Wordle, GREEN, YELLOW, BLACK };
