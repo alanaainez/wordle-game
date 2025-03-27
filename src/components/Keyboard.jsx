@@ -13,7 +13,7 @@ const Keyboard = ({ onInput, onBackspace, onSubmit, keyColors }) => {
       {keys.map((row, i) => (
         <button
         key={row}
-        className={`key ${keyColors[keys] || ""} ${["Enter", "Backspace"].includes(row) ? "special" : ""}`}
+        className={`key ${keyColors?.[row] || ""} ${["Enter", "Backspace"].includes(row) ? "special" : ""}`}
         onClick={() => row === "Enter" ? onSubmit() : row === "Backspace" ? onBackspace() : onInput(row)}
       >
         {row === "Backspace" ? "⌫" : row}
