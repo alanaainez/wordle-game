@@ -12,11 +12,11 @@ const Keyboard = ({ onInput, onBackspace, onSubmit, keyColors }) => {
     <div className="keyboard">
       {keys.map((row, i) => (
         <button
-        key={keys}
-        className={`key ${keyColors[keys] || ""} ${["Enter", "Backspace"].includes(keys) ? "special" : ""}`}
-        onClick={() => keys === "Enter" ? onSubmit() : keys === "Backspace" ? onBackspace() : onInput(keys)}
+        key={row}
+        className={`key ${keyColors[keys] || ""} ${["Enter", "Backspace"].includes(row) ? "special" : ""}`}
+        onClick={() => row === "Enter" ? onSubmit() : row === "Backspace" ? onBackspace() : onInput(row)}
       >
-        {keys === "Backspace" ? "⌫" : keys}
+        {row === "Backspace" ? "⌫" : row}
       </button>
     ))}
   </div>
