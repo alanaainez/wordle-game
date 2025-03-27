@@ -1,15 +1,22 @@
 .keyboard {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr); /* Creates 10 columns for top row */
+  display: flex;
+  flex-direction: column;
   gap: 5px;
-  justify-content: center;
+  align-items: center;
   max-width: 500px;
   margin: 20px auto;
 }
 
+.keyboard-row {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
 .key {
   padding: 10px 15px;
-  font-size: 1.2rem;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
   background-color: #ccc;
   cursor: pointer;
@@ -23,7 +30,7 @@
 }
 
 .special {
-  grid-column: span 2; /* Makes "Enter" and "Backspace" wider */
+  width: 70px; /* Makes "Enter" and "Backspace" wider */
 }
 
 /* Center the entire game */
