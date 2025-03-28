@@ -88,7 +88,9 @@ const WordleGame = () => {
 
       {!gameOver && (
         <>
+        <div className="current-guess">
           <p>Current Guess: {currentGuess}</p>
+          </div>
           <Keyboard onInput={handleInput} onBackspace={handleBackspace} onSubmit={handleSubmit} />
         </>
       )}

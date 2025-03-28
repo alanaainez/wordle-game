@@ -1,7 +1,6 @@
-//import { Wordle } from "./utils/wordle";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WordleGame from "./components/wordle-game";
-import Keyboard from "./components/Keyboard";
+//import Keyboard from "./components/Keyboard";
 import wordbank from "./utils/wordbank";
 import './components/wordle-game.css';
 import "./App.css";
@@ -14,6 +13,7 @@ function App() {
   const [currentGuess, setCurrentGuess] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleGuess = () => {
     if (currentGuess.length !== 5 || gameOver) return;
@@ -43,6 +43,24 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      handleInput(event.key);
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+    
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentGuess, gameOver, darkMode]);
+
   const newGame = () => {
     setWordToGuess(getRandomWord());
     setGuesses([]);
@@ -52,7 +70,10 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${darkMode ? "dark-mode" : ""}`}> {/* 🎨 Apply class */}
+      <button className="toggle-theme" onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
+      </button>
       <h1>Wordle Game</h1>
       <WordleGame wordToGuess={wordToGuess} guesses={guesses} currentGuess={currentGuess} />
       
@@ -62,6 +83,12 @@ function App() {
           <button onClick={newGame}>New Game</button>
         </div>
       )}
+      <footer className="footer">
+        <p>Created by Alana Rodriguez | 
+          <a href="https://github.com/alanaainez" target="_blank" rel="noopener noreferrer">
+          GitHub</a>
+          </p>
+      </footer>
     </div>
   );
 }
