@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import WordleGame from "./components/wordle-game";
 import Keyboard from "./components/Keyboard";
 import wordbank from "./utils/wordbank";
+import './components/wordle-game.css';
 import "./App.css";
 
 const getRandomWord = () => wordbank[Math.floor(Math.random() * wordbank.length)];

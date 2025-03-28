@@ -6,6 +6,10 @@
   font-family: Arial, sans-serif;
 }
 
+h1 {
+  text-align: center;
+}
+
 .wordle-grid {
   display: flex;
   flex-direction: column;
@@ -30,18 +34,18 @@
   text-transform: uppercase;
 }
 
-.g {
-  background-color: #6aaa64;
+.wordle-cell.correct {
+  background-color: #6aaa64; /* Green */
   color: white;
 }
 
-.y {
-  background-color: #c9b458;
+.wordle-cell.present {
+  background-color: #c9b458; /* Yellow */
   color: white;
 }
 
-.b {
-  background-color: #787c7e;
+.wordle-cell.absent {
+  background-color: #787c7e; /* Gray */
   color: white;
 }
 
