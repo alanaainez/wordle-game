@@ -34,12 +34,11 @@ THEN the game should load quickly and function properly, as it is deployed via A
 ```
 
 ## Requirements:
--deployed in AWS Amplify 
-       -need an amplify url
--github action on push that runs the tests
-       -tests should pass
--fully working Wordle that is playable
-       -generates a random word from the list to use as the Wordle word
-       -validates the word using the list of words provided 
-              -if the 5 letter word is not on the list, then it’s an invalid word
+-Deployed in AWS Amplify, requiring an amplify url
+
+-Github action on push that runs the tests that should pass
+
+-Fully working Wordle that is playable, meaning it generates a random word from the list to use as the Wordle word and validates the word using the list of words provided.
+
+-If the 5 letter word is not on the list, then it’s an invalid word.
 

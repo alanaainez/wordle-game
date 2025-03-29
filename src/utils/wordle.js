@@ -23,21 +23,32 @@ export class Wordle {
       return Array(this.word.length).fill(GREEN);
     }
     
-    let result = [];
+    let result = Array(this.word.length).fill(BLACK);
+    let correctWordLetterCount = {};
 
+    // Count occurrences of each letter in the correct word
+    for (let char of this.word) {
+      correctWordLetterCount[char] = (correctWordLetterCount[char] || 0) + 1;
+    }
+
+    // Step 1: First pass - mark correct (green) letters
     for (let i = 0; i < guess.length; i++) {
       if (guess[i] === this.word[i]) {
-        result.push(GREEN);
-      } else if (this.word.includes(guess[i])) {
-        if (this.letterRepeatedInGuess(guess, i)) {
-          result.push(BLACK);
-        } else {
-          result.push(YELLOW);
-        }
-      } else {
-        result.push(BLACK);
+        result[i] = GREEN;
+        correctWordLetterCount[guess[i]]--; // Reduce count
       }
     }
+
+    // Step 2: Second pass - mark present (yellow) letters if available
+    for (let i = 0; i < guess.length; i++) {
+      if (result[i] === GREEN) continue; // Skip already marked greens
+
+      if (this.word.includes(guess[i]) && correctWordLetterCount[guess[i]] > 0) {
+        result[i] = YELLOW;
+        correctWordLetterCount[guess[i]]--; // Reduce count
+      }
+    }
+
     return result;
   }
   
