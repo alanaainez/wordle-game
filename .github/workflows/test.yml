@@ -21,5 +21,8 @@ jobs:
     - name: Install dependencies
       run: npm install  # Install dependencies with npm, or use `yarn install` if using Yarn
 
+    - name: Ensure Jest is executable
+      run: chmod +x ./node_modules/.bin/jest  # Make Jest executable if needed
+
     - name: Run tests
-      run: npm test  # Run the test command (for Vite/React, it should be based on the setup)
+      run: npx jest  # Run Jest from the local node_modules
