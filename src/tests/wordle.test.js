@@ -1,4 +1,4 @@
-import { Wordle, GREEN, YELLOW, BLACK } from "./utils/wordle.js";
+import { Wordle, GREEN, YELLOW, BLACK } from "../utils/wordle.js";
 
 
 describe("Wordle", () => {
