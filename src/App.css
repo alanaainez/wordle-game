@@ -64,6 +64,7 @@ html.dark-mode, body.dark-mode, .app.dark-mode {
 
 h1 {
   text-align: center;
+  margin: 0;
 }
 
 .wordle-grid {
@@ -136,7 +137,7 @@ h1 {
   margin-top: 20px;
   padding: 10px;
   text-align: center;
-  font-size: 14px;
+  font-size: 20px;
   background-color: rgba(0, 0, 0, 0.1);
   color: inherit;
   width: 100%;
