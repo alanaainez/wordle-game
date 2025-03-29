@@ -1,4 +1,4 @@
-const { Wordle, GREEN, YELLOW, BLACK } = require("./wordle.js");
+import { Wordle, GREEN, YELLOW, BLACK } from "./utils/wordle.js";
 
 
 describe("Wordle", () => {
