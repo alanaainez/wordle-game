@@ -133,6 +133,20 @@ h1 {
   cursor: pointer;
 }
 
+input {
+  font-size: 18px;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Prevent Zooming on Mobile */
+input[type="text"], button {
+  touch-action: manipulation;
+}
+
 .footer {
   margin-top: 20px;
   padding: 10px;
@@ -151,4 +165,28 @@ h1 {
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .wordle-cell {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .wordle-row {
+    gap: 4px;
+  }
+
+  .keyboard-row button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .toggle-theme {
+    top: 5px;
+    right: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 }

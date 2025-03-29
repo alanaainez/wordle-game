@@ -8,6 +8,18 @@ const Keyboard = ({ onInput, onBackspace, onSubmit, keyColors }) => {
     ["Enter", "z", "x", "c", "v", "b", "n", "m", "Backspace"]
   ];
 
+  const handleTouch = (e, key) => {
+    e.preventDefault(); // Prevent accidental zooming or double-tap issues
+
+    if (key === "Enter") {
+      onSubmit();
+    } else if (key === "Backspace") {
+      onBackspace();
+    } else {
+      onInput(key);
+    }
+  };
+
   return (
     <div className="keyboard">
       {rows.map((row, rowIndex) => (
@@ -21,6 +33,7 @@ const Keyboard = ({ onInput, onBackspace, onSubmit, keyColors }) => {
         key === "Backspace" ? onBackspace() :
         onInput(key)
       }
+      onTouchStart={(e) => handleTouch(e, key)} // Add touch support
     >
       {key === "Backspace" ? "⌫" : key}
     </button>
